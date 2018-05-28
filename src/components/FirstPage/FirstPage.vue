@@ -1,0 +1,592 @@
+<template>
+    <div class='firstWrap'>
+      <header class='firstHeader'>
+        <div class="logo">
+          <a href="javascript:;"></a>
+          <div class='search'>
+            <i class='searchIcon'></i>
+            <p>搜索商品，共9763款好物</p>
+          </div>
+        </div>
+        <div class='navWrap'>
+          <div class='navList'>
+            <div class="tab active" @click='addClass'>
+              <span>推荐</span>
+            </div>
+            <div class="tab" @click='addClass' >
+              <span>居家</span>
+            </div>
+            <div class="tab" @click='addClass'>
+              <span>配件</span>
+            </div>
+            <div class="tab" @click='addClass'>
+              <span>服装</span>
+            </div>
+            <div class="tab" @click='addClass'>
+              <span>电器</span>
+            </div>
+            <div class="tab" @click='addClass'>
+              <span>洗护</span>
+            </div>
+            <div class="tab" @click='addClass'>
+              <span>饮食</span>
+            </div>
+            <div class="tab" @click='addClass'>
+              <span>餐厨</span>
+            </div>
+            <div class="tab" @click='addClass'>
+              <span>婴童</span>
+            </div>
+            <div class="tab" @click='addClass'>
+              <span>文体</span>
+            </div>
+            <div class="tab" @click='addClass'>
+              <span>特色区</span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class='carouselNav'>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="./images/carousel/01.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/carousel/02.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/carousel/03.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/carousel/04.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/carousel/05.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/carousel/06.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/carousel/07.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/carousel/08.jpg" alt="">
+            </div>
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="wySure">
+          <ul class='sureList'>
+            <li>
+              <img src="./images/baozheng.png" alt="">
+              <span class='text'>网易自营保证</span>
+            </li>
+            <li>
+              <img src="./images/baozheng.png" alt="">
+              <span class='text'>30天无忧退货</span>
+            </li>
+            <li>
+              <img src="./images/baozheng.png" alt="">
+              <span class='text'>48小时快速退款</span>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+      <section class='firstContent'>
+        <section class="productShop">
+          <div class="shopTop">
+            <span class='textWrap'>
+              <span class='text'>
+                品牌制造商直供
+              </span>
+              <i class='icon'></i>
+            </span>
+          </div>
+          <div class="shopContent">
+            <ul class="shopList">
+              <li>
+                <div class='text'>
+                  <h4 >CK制造商</h4>
+                  <p>25元起</p>
+                </div>
+                <img src="./images/productShop/CK.png" alt="">
+              </li>
+              <li>
+                <div class='text'>
+                  <h4>Nine West制造商</h4>
+                  <p>199元起</p>
+                </div>
+
+                <img src="./images/productShop/Nine.png" alt="">
+              </li>
+              <li>
+                <div class='text'>
+                  <h4>新秀丽制造商</h4>
+                  <p>49元起</p>
+                </div>
+
+                <img src="./images/productShop/xiuli.png" alt="">
+              </li>
+              <li>
+                <div class='text'>
+                  <h4>Brikenstock集团制造商</h4>
+                  <p>59.9元起</p>
+                </div>
+
+                <img src="./images/productShop/Briken.png" alt="">
+              </li>
+
+            </ul>
+          </div>
+        </section>
+        <section class="goods newShop">
+          <div class="imgTitle">
+            <div class="imgText new">
+              <span>新品首发</span>
+              <div class='seeAll'>
+                查看全部
+                <i class='rightArrow'></i>
+              </div>
+            </div>
+            <img src="./images/class/new.png" alt="">
+          </div>
+          <div class='goodsList'>
+            <ul >
+              <li>
+                <img src="./images/new_pro/01.png" alt="">
+                <div class='shopNews'>
+                  <div class='newIcon'>
+                    <p>满赠</p>
+                  </div>
+                  <span class="newName">小龙虾 4-6钱 1千克/盒 （800克虾+200克汤）</span>
+                  <span class='newDes'>夏季爆品，媲美现煮</span>
+                  <span class='newPrice'>¥98</span>
+                </div>
+              </li>
+              <li>
+                <img src="./images/new_pro/02.png" alt="">
+                <div class='shopNews'>
+                  <!--<div class='newIcon'>
+                    <p>满赠</p>
+                  </div>-->
+                  <span class="newName">小龙虾 4-6钱 1千克/盒 （800克虾+200克汤）</span>
+                  <span class='newDes'>夏季爆品，媲美现煮</span>
+                  <span class='newPrice'>¥98</span>
+                </div>
+              </li>
+              <li>
+                <img src="./images/new_pro/03.png" alt="">
+                <div class='shopNews'>
+                  <span class="newName">小龙虾 4-6钱 1千克/盒 （800克虾+200克汤）</span>
+                  <span class='newDes'>夏季爆品，媲美现煮</span>
+                  <span class='newPrice'>¥98</span>
+                </div>
+              </li>
+              <li class='clickSeeAll'>
+                <span class='SeeAll'>查看全部</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="goods popularShop">
+          <div class="imgTitle">
+            <div class="imgText popular">
+              <span>人气推荐·好物精选</span>
+              <div class='seeAll'>
+                查看全部
+                <i class='rightArrow'></i>
+              </div>
+            </div>
+            <img src="./images/class/hot.png" alt="">
+          </div>
+          <div class='goodsList'>
+            <ul>
+              <li>
+                <img src="./images/new_pro/01.png" alt="">
+                <div class='shopNews'>
+                  <div class='newIcon'>
+                    <p>满赠</p>
+                  </div>
+                  <span class="newName">小龙虾 4-6钱 1千克/盒 （800克虾+200克汤）</span>
+                  <span class='newDes'>夏季爆品，媲美现煮</span>
+                  <span class='newPrice'>¥98</span>
+                </div>
+              </li>
+              <li>
+                <img src="./images/new_pro/02.png" alt="">
+                <div class='shopNews'>
+                  <!--<div class='newIcon'>
+                    <p>满赠</p>
+                  </div>-->
+                  <span class="newName">小龙虾 4-6钱 1千克/盒 （800克虾+200克汤）</span>
+                  <span class='newDes'>夏季爆品，媲美现煮</span>
+                  <span class='newPrice'>¥98</span>
+                </div>
+              </li>
+              <li>
+                <img src="./images/new_pro/03.png" alt="">
+                <div class='shopNews'>
+                  <span class="newName">小龙虾 4-6钱 1千克/盒 （800克虾+200克汤）</span>
+                  <span class='newDes'>夏季爆品，媲美现煮</span>
+                  <span class='newPrice'>¥98</span>
+                </div>
+              </li>
+              <li class='clickSeeAll'>
+                <span class='SeeAll'>查看全部</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="timeSelect"></section>
+      </section>
+
+    </div>
+</template>
+
+<script>
+  import BScroll from 'better-scroll'
+  import Swiper from 'swiper'
+  import 'swiper/dist/css/swiper.min.css'
+    export default {
+        methods: {
+          // 顶部active点击切换
+          addClass (event){
+            const tabLis = document.querySelectorAll('.tab')
+            for (let i=0; i<tabLis.length; i++){
+              tabLis[i].className= 'tab'
+            }
+            event.target.className= 'tab active'
+            console.log(event.target)
+          },
+          // 水平滑动
+          scroll() {
+            //设置list的宽度为子级的宽度
+            const navList = document.querySelector('.navList')
+            const tabLis = document.querySelectorAll('.tab')
+            let h = (tabLis.length-1)*48
+            for (let i=0;i<tabLis.length;i++){
+              h += tabLis[i].offsetWidth
+            }
+            navList.style.width=h+'px'
+            // 头部列表水平滑动
+            new BScroll('.navWrap', {
+              scrollX: true,
+              click: true
+            })
+
+            new BScroll('.newShop > .goodsList', {
+              scrollX: true,
+              click: true
+            })
+            const BS = new BScroll('.popularShop > .goodsList', {
+              scrollX: true,
+              click: true,
+              enabled: false
+            })
+            console.log(BS)
+
+          }
+        },
+        mounted (){
+          this.scroll()
+
+          new Swiper('.swiper-container',{
+            loop: true,
+            pagination: {
+              el: '.swiper-pagination',
+              type: 'bullets',
+
+            }
+          })
+
+        }
+    }
+</script>
+
+<style scoped lang="stylus" rel="stylesheet/stylus" type="text/stylus">
+  @import "../../common/stylus/mixins.styl"
+  $rem = 750/10rem
+  .firstWrap
+    font-size (28/$rem)
+
+    margin-bottom (98/$rem)
+    .firstHeader
+      position fixed
+      display flex
+      flex-direction column
+      top 0
+      z-index 4
+      width 100%
+      font-size (28/$rem)
+      background #ffffff
+      .logo
+        width 100%
+        display flex
+        align-items center
+        bottom-border-1px(#d9d9d9)
+        padding (16/$rem 30/$rem)
+        a
+          width (138/$rem)
+          height (40/$rem)
+          margin-right (20/$rem)
+          background url("./images/logo.png") no-repeat
+        .search
+          display flex
+          height (56/$rem)
+          width (532/$rem)
+          justify-content center
+          align-items center
+          color #666
+          background #ededed
+          .searchIcon
+            display inline-block
+            width (28/$rem)
+            height (28/$rem)
+            background url("./images/search.png") no-repeat
+            margin-right (10/$rem)
+      .navWrap
+        width 100%
+        height (60/$rem)
+        .navList
+          height 100%
+          display flex
+          white-space nowrap
+          padding (0 30/$rem)
+          .tab
+            float left
+            line-height (60/$rem)
+            margin-left (48/$rem)
+            position relative
+            &.active
+              color #b4282d
+              &:before
+                position absolute
+                content ''
+                display block
+                width 100%
+                height (3/$rem)
+                background #b4282d
+                bottom (0/$rem)
+                left 0
+            &:first-of-type
+              margin-left 0
+            span
+              padding (0 16/$rem)
+    .carouselNav
+      margin-top (148/$rem)
+      margin-bottom (20/$rem)
+      width 100%
+      background #ffffff
+      .swiper-container
+        height (400/$rem)
+        .swiper-pagination
+          margin-bottom (30/$rem)
+          .swiper-pagination-bullet
+            background #ffffff
+            opacity 0.4
+            height (4/$rem)
+      .wySure
+        font-size (24/$rem)
+        height (72/$rem)
+        width 100%
+        color #333333
+        bottom-border-1px(#d9d9d9)
+        background #ffffff
+        ul
+          display flex
+          align-items center
+          height 100%
+          width 100%
+          padding (0 30/$rem)
+          box-sizing border-box
+          li
+            float left
+            display flex
+            flex 1
+            align-items center
+            img
+              width (32/$rem)
+              height (32/$rem)
+              vertical-align middle
+            .text
+              margin-left (8/$rem)
+              vertical-align middle
+    .firstContent
+      width 100%
+      .productShop
+        background #ffffff
+        margin-bottom (20/$rem)
+        .shopTop
+          height (110/$rem)
+          font-size (32/$rem)
+          text-align center
+          color #333333
+          .textWrap
+            line-height (110/$rem)
+            .text
+              vertical-align middle
+            .icon
+              background url("./images/right_icon.png") no-repeat
+              display inline-block
+              width (30/$rem)
+              height (30/$rem)
+              vertical-align middle
+              margin-left (10/$rem)
+
+
+        .shopContent
+          width 100%
+          font-size (28/$rem)
+          color #333333
+          padding-bottom (8/$rem)
+          overflow hidden
+          .shopList
+            padding (0 16/$rem)
+            width 100%
+            box-sizing border-box
+            clearFix()
+            li
+              margin-right (8/$rem)
+              margin-bottom (8/$rem)
+              background #f4f4f4
+              width (355/$rem)
+              height (236/$rem)
+              float left
+              .text
+                position absolute
+                z-index 0
+                padding-top (20/$rem)
+                padding-left (20/$rem)
+                h4
+                  overflow hidden
+                  white-space nowrap
+                  text-overflow ellipsis
+                  margin-bottom (6/$rem)
+                  line-height (34/$rem)
+              img
+                width 100%
+                height 100%
+              &:nth-of-type(2)
+                margin-right 0
+              &:nth-of-type(3)
+                margin-bottom 0
+              &:nth-of-type(4)
+                margin-right 0
+                margin-bottom 0
+
+
+      .goods
+        background #ffffff
+        margin-bottom (20/$rem)
+        .imgTitle
+          position relative
+          height (260/$rem)
+          margin-bottom (32/$rem)
+          display flex
+          align-items center
+          justify-content center
+
+          .imgText
+            position absolute
+            z-index 2
+            font-size (36/$rem)
+            text-align center
+            .seeAll
+              font-size (28/$rem)
+              width (240/$rem)
+              height (56/$rem)
+              margin-top (16/$rem)
+              line-height (56/$rem)
+              vertical-align middle
+              .rightArrow
+                display inline-block
+                width (10/$rem)
+                height (22/$rem)
+                background url("./images/rightArrow.png") no-repeat
+                vertical-align middle
+            &.new
+              color #8ba0b6
+              .seeAll
+                background #D8E5F1
+            &.popular
+              color #B4A078
+              .seeAll
+                background #F4E9CB
+          img
+            position absolute
+        .goodsList
+          width 100%
+          height (480/$rem)
+          overflow hidden
+          ul
+            display flex
+            height 100%
+            float left
+            li
+              display inline-block
+              width (280/$rem!important)
+              margin-left (30/$rem)
+              background #ffffff
+              img
+                width 100%
+                background #f4f4f4
+                border-radius (5/$rem)
+                margin-bottom (20/$rem)
+              .shopNews
+                width 100%
+                span
+                  display inline-block
+                  width 100%
+                  overflow hidden
+                  white-space nowrap
+                  text-overflow ellipsis
+                  padding (0 10/$rem)
+                  box-sizing border-box
+                .newIcon
+                  width 100%
+                  height (30/$rem)
+                  padding-left (10/$rem)
+                  margin-bottom (16/$rem)
+                  p
+                    font-size (22/$rem)
+                    border-radius (5/$rem)
+                    text-align center
+                    vertical-align middle
+                    line-height (30/$rem)
+                    color #ffffff
+                    display inline-block
+                    background #f48f18
+                    padding (5/$rem 16/$rem)
+                    margin-left (12/$rem)
+                .newName
+                  font-size (28/$rem)
+                  padding (0 10/$rem)
+                  margin (10/$rem 0)
+                  line-height (30/$rem)
+                .newDes
+                  font-size (26/$rem)
+                  margin-bottom (14/$rem)
+                  line-height (30/$rem)
+                  color #7f7f7f
+                .newPrice
+                  font-size (28/$rem)
+                  color #b4282d
+
+
+              &.clickSeeAll
+                display inline-block
+                width (264/$rem)
+                height (264/$rem)
+                margin (0 30/$rem)
+                border (8/$rem solid #f4f4f4)
+                text-align center
+                background #ffffff
+                line-height (264/$rem)
+                font-size (28/$rem)
+                color #666
+
+
+</style>

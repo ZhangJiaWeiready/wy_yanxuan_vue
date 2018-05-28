@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no">
+    <link rel="stylesheet" href="./static/css/reset.css">
+    <title>网易严选</title>
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <!--解决移动端点击延迟3s-->
+    <script>
+      if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body);
+        }, false);
+      }
+      if(!window.Promise) {
+        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+      }
+    </script>
+    <!--rem适配-->
+    <script type="text/javascript">
+      (function(){
+        var styleNode = document.createElement("style");
+        var w = document.documentElement.clientWidth/10;
+        styleNode.innerHTML = "html{font-size:"+w+"px!important}";
+        document.head.appendChild(styleNode);
+      })()
+    </script>
+    <style>
+
+    </style>
+  </head>
+  <body style="background: #f2f2f2 ">
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
