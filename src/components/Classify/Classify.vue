@@ -9,15 +9,15 @@
         </div>
       </header>
       <div class="shopList">
-        <ul >
-          <li @click.stop='addOn' v-for='(item) in 20'>
+        <ul>
+          <li @click.stop='addOn(index)' v-for='(cate,index) in headCateList' :key='index' :class="{on:cate.name==='居家'}">
             <p>
-              推荐专区
+              {{cate.name}}
             </p>
           </li>
         </ul>
       </div>
-      <shop-class class='ListWrap'/>
+      <shop-class class='ListWrap' :position='position'/>
 
 
     </div>
@@ -25,32 +25,42 @@
 
 <script>
   import BScroll from 'better-scroll'
+  import {mapState} from 'vuex'
   import ShopClass from '../../pages/ShopClass/ShopClass'
     export default {
         data (){
           return {
-            isAdd: false
+            isAdd: false,
+            position: 3
           }
         },
-        mounted() {
-          // 数据挂载之后给第一个li添加on属性
-          const liNode = document.querySelectorAll('.shopList>ul>li')
-          const wrap = document.querySelector('.ClassifyWrap')
-          liNode[0].className='on'
-          new BScroll('.shopList',{
-            scrollY: true,
-            click: true,
-            bounce: false
-          })
+        computed: {
+          ...mapState(['headCateList']),
         },
+        mounted() {
+          this.$store.dispatch('getHeadCateList',()=>{
+
+            this.$nextTick(()=>{
+              console.log(111)
+              new BScroll('.shopList',{
+                scrollY: true,
+                click: true,
+              })
+            })
+          })
+
+        },
+
         methods: {
+
+
           //添加class
-          addOn (event){
+          addOn (index){
+            this.position = index
             const liNodes = document.querySelectorAll('.shopList > ul > li')
             for (let i =0; i<liNodes.length; i++){
               liNodes[i].removeAttribute('class')
             }
-            console.log(event)
             event.target.parentNode.className='on'
           }
         },
@@ -100,12 +110,11 @@
       position fixed
       left 0
       top (88/$rem)
-      bottom 0
+      bottom (98/$rem)
       z-index 4
       background #ffffff
       width (162/$rem)
       padding-top (40/$rem)
-      padding-bottom (138/$rem)
       ul
         li
           position relative
@@ -124,6 +133,8 @@
             white-space nowrap
           &:first-of-type
             margin-top 0
+          &:last-of-type
+            padding-bottom (36/$rem)
           &.on
             font-size (36/$rem!important)
             color #ab2b2b!important
@@ -135,11 +146,6 @@
               height 100%
               width (5/$rem)
               background #ab2b2b
-
-
-
-
-
     .ListWrap
       position: absolute
       right 0

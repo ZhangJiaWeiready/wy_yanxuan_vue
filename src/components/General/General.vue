@@ -3,18 +3,9 @@
       <login-header/>
       <section class='swiper'>
           <div class="swiper-container">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper" v-for='(item,index) in banner' :key='index'>
               <div class="swiper-slide">
-
-                  <img src="./images/carousel/01.jpg" alt="">
-              </div>
-              <div class="swiper-slide">
-
-                  <img src="./images/carousel/02.jpg" alt="">
-
-              </div>
-              <div class="swiper-slide">
-                  <img src="./images/carousel/03.jpg" alt="">
+                  <img :src="item.picUrl" alt="">
               </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -23,51 +14,51 @@
       <section class="article">
         <div class="articleWrap">
           <ul>
-            <li v-for='i in 10'>
+            <li v-for='(only,index) in column' :key='index'>
               <div class="picWrap">
                 <span>
-                  347篇文章
+                 {{only.articleCount}}
                 </span>
-                <img src="./images/article/03.png" alt="">
+                <img :src="only.picUrl" alt="">
               </div>
               <div class="avatorName">
                 <span>
-                  严选推荐
+                  {{only.title}}
                 </span>
               </div>
             </li>
           </ul>
         </div>
       </section>
-      <general-review/>
+      <general-review :recommendOne='recommendOne' :recommendTwo='recommendTwo' :recommendThree='recommendThree'/>
       <section class="tenfifteen">
         <div class="title">
           <span>十点一刻</span>
         </div>
         <div class="list">
           <ul>
-            <li v-for='i in 4'>
+            <li v-for='(ten,index) in tenfifteen' :key='index'>
               <div class="wrap">
                 <div class="top">
                   <span>--今日话题--</span>
                 </div>
                 <div class="middle">
-                  <div class='Middletitle'>生活的仪式感</div>
-                  <div class='question'>你觉得重要吗？</div>
+                  <div class='Middletitle'>{{ten.title}}</div>
+                  <div class='question'>{{ten.desc}}</div>
                 </div>
                 <div class="bottom">
                   <div class="wrap">
-                    <div class="avator" v-for='i in 3'>
-                      <img src="./images/avator/01.jpg" alt="">
+                    <div class="avator" v-for='(avator,index) in ten.participantAvatar' :key='index' v-if='ten.participantAvatar'>
+                      <img :src="avator" alt="" v-if='avator!==null'>
                     </div>
-                    <div class="avator more">
+                    <div class="avator more" v-if='!ten.participantNum===0'>
                       <div class='point'></div>
                       <div class='point'></div>
                       <div class='point'></div>
                     </div>
                     <div class='manyPeople'>
                       <span>
-                        7人参与话题
+                        {{ten.participantNum}}人参与话题
                       </span>
                     </div>
                   </div>
@@ -83,19 +74,19 @@
           </ul>
         </div>
       </section>
-      <general-review/>
+      <general-review :zhenOne='zhenOne' :zhenTwo='zhenTwo' :zhenThree='zhenThree'/>
       <section class='yxLook'>
         <div class="header">
           <span>严选LOOK</span>
         </div>
-        <img src="./images/LOOk.jpg" alt="">
+        <img :src="yxLook.picUrl" alt="">
         <div class="topicInfo">
           <div class="avatorInfo">
-            <img src="./images/avator/01.jpg" alt="">
-            <span class='name'>j***l</span>
+            <img :src="yxLook.avatar" alt="">
+            <span class='name'>{{yxLook.nickname}}</span>
           </div>
           <div class="evaluate">
-            <p>味道还可以，这款挂耳的方式很新颖，时间富裕喝现磨，时间紧张喝挂耳</p>
+            <p>{{yxLook.content}}</p>
           </div>
         </div>
       </section>
@@ -104,24 +95,18 @@
           <span>更多精彩</span>
         </section>
         <section class='moreContent'>
-          <div class="item" v-for='i in 5'>
-            <img src="./images/moreContent.jpg" alt="more">
-            <div class='text'>
-              <span>页面内童心好物每满99立减10元</span>
-            </div>
-          </div>
-          <div class="item threePic">
-            <div class="imgs">
+          <div class="item" v-for='(more,index) in findMore' :key='index'>
+            <img :src="more.scenePicUrl" alt="more" v-if='!more.picList'>
+            <div class="imgs" v-if='more.picList'>
               <div class="left">
-                <img src="./images/big.jpg" alt="">
+                <img :src="pic" alt="" v-for='(pic,index) in more.picList' :key='index' v-if='index===0'>
               </div>
               <div class="right">
-                <img src="./images/small.jpg" alt="">
-                <img src="./images/small.jpg" alt="">
+                <img :src="pic" alt="" v-for='(pic,index) in more.picList' :key='index' v-if='index===1 || index===2'>
               </div>
             </div>
-            <div class="text">
-              <span>美好明天</span>
+            <div class='text'>
+              <span>{{more.subTitle}}</span>
             </div>
           </div>
         </section>
@@ -133,6 +118,7 @@
 <script>
   import Swiper from 'swiper'
   import BScroll from 'better-scroll'
+  import {mapState,mapActions} from 'vuex'
   import 'swiper/dist/css/swiper.min.css'
   import LoginHeader from '../../pages/LoginHeader/LoginHeader'
   import GeneralReview from '../../pages/GeneralReview/GeneralReview'
@@ -147,31 +133,35 @@
           this.scroll(),
           window.addEventListener('scroll', this.handleScroll)
         },
+        computed: {
+          ...mapState([
+            'banner',
+            'column',
+            'recommendOne',
+            'recommendTwo',
+            'recommendThree',
+            'tenfifteen',
+            'zhenOne',
+            'zhenTwo',
+            'zhenThree',
+            'yxLook',
+            'findMore'
+          ])
+        },
         methods: {
-          scroll (){
-            new Swiper('.swiper-container', {
-              loop: true,
-              spaceBetween: 20,
-              slidesPerView : 1.1,
-              centeredSlides : true
-            })
-            /*文章滑动*/
-            new BScroll('.articleWrap',{
-              scrollX: true,
-              scrollY: false,
-              click: true,
-              bounceTime: 1000,
-              momentumLimitDistance: 8,
-              eventPassthrough: 'vertical'
-            }),
-              /*十点一刻*/
-              new BScroll('.list',{
-                click: true,
-                scrollX: true,
-                eventPassthrough: 'vertical',
-                momentumLimitDistance: 8
-              })
-          },
+          ...mapActions([
+            'getBanner',
+            'getColumn',
+            'getRecommendOne',
+            'getRecommendTwo',
+            'getRecommendThree',
+            'getZhenOne',
+            'getZhenTwo',
+            'getZhenThree',
+            'getTenfifteen',
+            'getYxLook',
+            'getFindMore'
+          ]),
           handleScroll () {
             this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
             if (this.scrollTop >= document.documentElement.clientHeight){
@@ -180,6 +170,7 @@
               this.isShowToup = false
             }
           },
+
           clickToTop() {
             clearInterval(this.timer)
             this.timer = setInterval(()=>{
@@ -189,6 +180,55 @@
               }
             },1)
           }
+        },
+        mounted() {
+          this.getBanner(()=>{
+            this.$nextTick(()=>{
+              new Swiper('.swiper-container', {
+                loop: true,
+                spaceBetween: 20,
+                slidesPerView : 1.1,
+                centeredSlides : true
+              })
+            })
+          })
+          this.getColumn(()=> {
+            this.$nextTick(()=>{
+
+              /*文章滑动*/
+              new BScroll('.articleWrap',{
+                scrollX: true,
+                scrollY: false,
+                click: true,
+                bounceTime: 1000,
+                momentumLimitDistance: 8,
+                eventPassthrough: 'vertical'
+              })
+            })
+          })
+          this.getRecommendOne()
+          this.getRecommendTwo()
+          this.getRecommendThree()
+          this.getZhenOne()
+          this.getZhenTwo()
+          this.getZhenThree()
+          this.getTenfifteen(() =>{
+            this.$nextTick(()=>{
+              /*十点一刻*/
+              new BScroll('.list',{
+                click: true,
+                scrollX: true,
+                eventPassthrough: 'vertical',
+                momentumLimitDistance: 8
+              })
+            })
+          })
+          this.getYxLook(()=> {
+            console.log(this.yxLook)
+            console.log(1111+'yxlook')
+          })
+          this.getFindMore()
+          window.addEventListener('scroll', this.handleScroll)
         },
         components: {
           LoginHeader,
@@ -214,6 +254,8 @@
       background #fff
       .swiper-container
         width 100%
+        height 100%
+        display flex
         .swiper-slide
           width 80%
           img
@@ -250,6 +292,9 @@
             .avatorName
               width 100%
               text-align center
+              white-space nowrap
+              text-overflow ellipsis
+              overflow hidden
               color #333
               font-size (24/$rem)
     .tenfifteen
@@ -314,6 +359,7 @@
                   width (325/$rem)
                   margin 0 auto
                   display flex
+                  align-self center
                   .avator
                     height (46/$rem)
                     width (46/$rem)
@@ -332,9 +378,9 @@
                   .manyPeople
                     font-size (24/$rem)
                     color #7f7f7f
-                    margin-left (8/$rem)
                     line-height (46/$rem)
                     white-space nowrap
+                    margin 0 auto
             &.seeAll
               display flex
               justify-content center
@@ -429,27 +475,28 @@
             overflow hidden
             white-space nowrap
             text-overflow ellipsis
-          &.threePic
-            .imgs
-              height (360/$rem)
-              width 100%
-              clearFix()
-              .left
-                width (460/$rem)
+          .imgs
+            height (360/$rem)
+            width 100%
+            clearFix()
+            .left
+              width (460/$rem)
+              height 100%
+              margin-right (4/$rem)
+              float left
+              img
+                width 100%
                 height 100%
-                margin-right (4/$rem)
-                float left
-                img
-                  width 100%
-                  height 100%
-              .right
-                float right
-                display flex
-                flex-direction column
-                img
-                  width (178/$rem)
-                  height 178%
-                  &:first-of-type
-                    margin-bottom (4/$rem)
+            .right
+              float right
+              display flex
+              flex-direction column
+              img
+                width (178/$rem)
+                height 178%
+                &:first-of-type
+                  margin-bottom (4/$rem)
+
+
 
 </style>

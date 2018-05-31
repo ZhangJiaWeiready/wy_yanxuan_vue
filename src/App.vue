@@ -1,14 +1,14 @@
 <template>
   <div id='app'>
     <!--<HeaderList/>-->
-      <router-view/>
-    <FooterGuide v-show='isShowFooter'/>
+    <router-view/>
+    <FooterGuide/>
   </div>
 </template>
 
 <script>
 import FooterGuide from './pages/FooterGuide/FooterGuide'
-
+import {mapActions} from 'vuex'
 export default {
   data (){
     return {
@@ -18,18 +18,17 @@ export default {
     FooterGuide,
   },
   computed: {
-    isShowFooter() {
-      const path = this.$route.path
-      if (path==='/search'||path==='/login' || (this.$route.path === '/emaillogin')
-        || (this.$route.path === '/phonelogin')
-        ||(this.$route.path === '/register')
-        ||(this.$route.path === '/emailregister')){
-        return false
-      } else  {
-        return true
-      }
-    }
-  }
+
+  },
+ /* methods:{
+    menu() {
+      window.scrollTo(0,0);
+    },
+  },
+  created(){
+    this.menu();
+  }*/
+
 }
 </script>
 

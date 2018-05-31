@@ -1,5 +1,6 @@
 <template>
-    <div id='guideWrap'>
+    <!--通过设置meta来确定那个组件有那个组件隐藏-->
+    <div id='guideWrap' v-show='$route.meta.showFooter'>
       <ul class='guideList'>
         <li @click="toPages('/firstpage')">
             <span :class="{active:$route.path==='/firstpage'}" ></span>

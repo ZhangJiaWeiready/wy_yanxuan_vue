@@ -1,220 +1,33 @@
 <template>
     <div class="classListWrap">
-      <div class="ListWrap">
-        <section class="listTop">
-        <span>
-          居家好物
-        </span>
+      <div class="ListWrap" v-for='(cate,index) in cateList' :key='index'>
+        <section class="listTop" >
+          <span>
+            {{cate.name}}好物
+          </span>
         </section>
         <section class="goodMsg">
           <ul>
-            <li>
+            <li v-for='(item,index) in cate.itemList' :key='index' v-show='index<7'>
               <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
+                <img :src="item.primaryPicUrl">
               </div>
               <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
+                <span>{{item.simpleDesc}}</span>
               </div>
               <div class="titleMsg">
-              <span class='disCounts'>
-                <p>满额减</p>
+              <span class='disCounts' v-for='(tag,index) in item.itemTagList' :key='index' v-if='item.itemTagList'>
+                <p :style='{background: color[tag.type]}'>{{tag.name}}</p>
               </span>
                 <span class="goodName">
-                天然宽篾头层青碳化竹凉席
+                {{item.name}}
               </span>
                 <span class="goodPrice">
-                ￥279
+                ￥{{item.retailPrice}}
               </span>
               </div>
             </li>
-            <li>
-              <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
-              </div>
-              <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
-              </div>
-              <div class="titleMsg">
-             <span class='disCounts'>
-                <p>满额减</p>
-              </span>
-                <span class="goodName">
-                天然宽篾头层青碳化竹凉席
-              </span>
-                <span class="goodPrice">
-                ￥279
-              </span>
-              </div>
-            </li>
-            <li>
-              <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
-              </div>
-              <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
-              </div>
-              <div class="titleMsg">
-              <span class='disCounts'>
-                <p>满额减</p>
-              </span>
-                <span class="goodName">
-                天然宽篾头层青碳化竹凉席
-              </span>
-                <span class="goodPrice">
-                ￥279
-              </span>
-              </div>
-            </li>
-            <li>
-              <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
-              </div>
-              <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
-              </div>
-              <div class="titleMsg">
-              <span class='disCounts'>
-                <p>满额减</p>
-              </span>
-                <span class="goodName">
-                天然宽篾头层青碳化竹凉席
-              </span>
-                <span class="goodPrice">
-                ￥279
-              </span>
-              </div>
-            </li>
-            <li>
-              <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
-              </div>
-              <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
-              </div>
-              <div class="titleMsg">
-              <span class='disCounts'>
-                <p>满额减</p>
-              </span>
-                <span class="goodName">
-                天然宽篾头层青碳化竹凉席
-              </span>
-                <span class="goodPrice">
-                ￥279
-              </span>
-              </div>
-            </li>
-            <li class="more">
-              <div class="text">
-                <span>更多居家好物</span>
-                <i class='icon'></i>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </div>
-      <div class="ListWrap">
-        <section class="listTop">
-        <span>
-          居家好物
-        </span>
-        </section>
-        <section class="goodMsg">
-          <ul>
-            <li>
-              <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
-              </div>
-              <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
-              </div>
-              <div class="titleMsg">
-              <span class='disCounts'>
-                <p>满额减</p>
-              </span>
-                <span class="goodName">
-                天然宽篾头层青碳化竹凉席
-              </span>
-                <span class="goodPrice">
-                ￥279
-              </span>
-              </div>
-            </li>
-            <li>
-              <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
-              </div>
-              <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
-              </div>
-              <div class="titleMsg">
-             <span class='disCounts'>
-                <p>满额减</p>
-              </span>
-                <span class="goodName">
-                天然宽篾头层青碳化竹凉席
-              </span>
-                <span class="goodPrice">
-                ￥279
-              </span>
-              </div>
-            </li>
-            <li>
-              <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
-              </div>
-              <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
-              </div>
-              <div class="titleMsg">
-              <span class='disCounts'>
-                <p>满额减</p>
-              </span>
-                <span class="goodName">
-                天然宽篾头层青碳化竹凉席
-              </span>
-                <span class="goodPrice">
-                ￥279
-              </span>
-              </div>
-            </li>
-            <li>
-              <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
-              </div>
-              <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
-              </div>
-              <div class="titleMsg">
-              <span class='disCounts'>
-                <p>满额减</p>
-              </span>
-                <span class="goodName">
-                天然宽篾头层青碳化竹凉席
-              </span>
-                <span class="goodPrice">
-                ￥279
-              </span>
-              </div>
-            </li>
-            <li>
-              <div class="goodPic">
-                <img src="./images/jujia/01.png" alt="">
-              </div>
-              <div class="slogan">
-                <span>宽细夹排，升级爽滑凉感</span>
-              </div>
-              <div class="titleMsg">
-              <span class='disCounts'>
-                <p>满额减</p>
-              </span>
-                <span class="goodName">
-                天然宽篾头层青碳化竹凉席
-              </span>
-                <span class="goodPrice">
-                ￥279
-              </span>
-              </div>
-            </li>
+
             <li class="more">
               <div class="text">
                 <span>更多居家好物</span>
@@ -229,8 +42,22 @@
 </template>
 
 <script>
+  import {mapActions,mapState} from 'vuex'
     export default {
-        name: "good-class-list"
+        data() {
+          return {
+            color: ['red','#f48f18','#e5686d']
+          }
+        },
+        computed: {
+          ...mapState(['cateList'])
+        },
+        methods:{
+          ...mapActions(['getCateList'])
+        },
+        mounted() {
+          this.getCateList()
+        }
     }
 </script>
 
@@ -256,12 +83,17 @@
           float left
           padding (0 10/$rem 33/$rem 20/$rem)
           width 50%
+          height (586/$rem)
           box-sizing border-box
           .goodPic
             background #f4f4f4
             border-radius (8/$rem)
+            width (345/$rem)
+            height (345/$rem)
             img
+              display inline-block
               width 100%
+              height 100%
           .slogan
             background #F1ECE2
             color #9F8A60
@@ -289,6 +121,7 @@
                 font-size (20/$rem)
                 line-height (20/$rem)
                 vertical-align middle
+                text-align center
                 white-space nowrap
 
 

@@ -18,51 +18,89 @@ export default new VueRouter({
   routes:[
     {
       path: '/firstpage',
-      component: FirstPage
+      component: FirstPage,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/general',
-      component: General
+      component: General,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/classify',
-      component: Classify
+      component: Classify,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/shopcart',
-      component: ShopCart
+      component: ShopCart,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/personal',
-      component: Personal
+      component: Personal,
+
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/search',
-      component: Search
+      component: Search,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/login',
       component: Login,
+      meta: {
+        showFooter: false
+      }
     },
     {
       path: '/phonelogin',
-      component: PhoneLogin
+      component: PhoneLogin,
+      meta: {
+        showFooter: false
+      }
     },
     {
       path: '/emaillogin',
-      component: EmailLogin
+      component: EmailLogin,
+      meta: {
+        showFooter: false
+      }
     },
     {
       path: '/register',
-      component: Register
+      component: Register,
+      meta: {
+        showFooter: false
+      }
     },
     {
       path: '/emailregister',
-      component: EmailRegister
+      component: EmailRegister,
+      meta: {
+        showFooter: false
+      }
     },
     {
       path: '/',
-      redirect: '/firstpage'
-    }
-  ]
+      redirect: '/firstpage',
+    },
+
+  ],
+  /*scrollBehavior (to, from, savedPosition) {
+     return { x: 0, y: 0 }
+  }*/
 })
