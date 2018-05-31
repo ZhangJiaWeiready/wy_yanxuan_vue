@@ -4,8 +4,8 @@
         <div class="logo">
           <a href="javascript:;"></a>
           <div class='search'>
-            <i class='searchIcon'></i>
-            <p>搜索商品，共9763款好物</p>
+            <i class='searchIcon'  @click="$router.replace('/firstpage')"></i>
+            <p  @click="$router.push('/search')">搜索商品，共9763款好物</p>
           </div>
         </div>
         <div class='navWrap'>
@@ -240,8 +240,105 @@
             </ul>
           </div>
         </section>
-        <section class="timeSelect"></section>
+        <section class="timeBuy">
+          <div class="buyLeft">
+            <span class="title">
+              严选限时购
+            </span>
+            <section class="countdown">
+              <span class="hour">
+                01
+              </span>
+              <p>:</p>
+              <span class="minute">
+                35
+              </span>
+              <p>:</p>
+              <span class="seconds">
+                00
+              </span>
+            </section>
+            <section class="buyBottom">
+              下一场 10:00 开始
+            </section>
+          </div>
+          <div class="buyRight">
+            <img src="./images/onlytime.png" alt="">
+            <div class="price">
+              <span class="nowPrice">
+                ￥111
+              </span>
+              <span class="oldPrice">
+                ￥123
+              </span>
+            </div>
+          </div>
+        </section>
+        <section class='welfareTeam'>
+          <img src="./images/class/fuli.jpg" alt="">
+        </section>
+        <section class="goodSelect">
+          <section class="selectTop">
+            <span class='textWrap'>
+              <span class='text'>
+                专题精选
+              </span>
+              <i class='icon'></i>
+            </span>
+          </section>
+          <section class="selectBottom">
+            <div class="picWrap">
+              <ul>
+                <li>
+                  <img src="./images/ztjingxuan/01.jpg" alt="">
+                  <div class="text">
+                    <div class="textLeft">
+                      <h4>给毛孔来一次深度清洁</h4>
+                      <p>硅胶洁面仪，洗出会发光的素颜肌</p>
+                    </div>
+                    <div class="textRight">
+                      111.7 元起
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <img src="./images/ztjingxuan/01.jpg" alt="">
+                  <div class="text">
+                    <div class="textLeft">
+                      <h4>给毛孔来一次深度清洁</h4>
+                      <p>硅胶洁面仪，洗出会发光的素颜肌</p>
+                    </div>
+                    <div class="textRight">
+                      111.7 元起
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <img src="./images/ztjingxuan/01.jpg" alt="">
+                  <div class="text">
+                    <div class="textLeft">
+                      <h4>给毛孔来一次深度清洁</h4>
+                      <p>硅胶洁面仪，洗出会发光的素颜肌</p>
+                    </div>
+                    <div class="textRight">
+                      111.7 元起
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
       </section>
+      <good-class-list/>
+      <frist-page-bottom/>
+      <transition name='moveCate'>
+        <div class="cateShop" v-if='isShowCate'>
+          <i class='cateImg'></i>
+        </div>
+      </transition>
+
+        <to-top :isShowToup='isShowToup' @totop='clickToTop'/>
 
     </div>
 </template>
@@ -250,7 +347,16 @@
   import BScroll from 'better-scroll'
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.min.css'
+  import GoodClassList from '../../pages/GoodClassList/GoodClassList'
+  import FristPageBottom from '../../pages/FristPageBottom/FristPageBottom'
+  import ToTop from '../../pages/ToTop/ToTop'
     export default {
+        data (){
+          return {
+            isShowToup: false,
+            isShowCate: false
+          }
+        },
         methods: {
           // 顶部active点击切换
           addClass (event){
@@ -279,20 +385,43 @@
 
             new BScroll('.newShop > .goodsList', {
               scrollX: true,
-              click: true
+              click: true,
+              eventPassthrough: 'vertical'
             })
-            const BS = new BScroll('.popularShop > .goodsList', {
+            new BScroll('.popularShop > .goodsList', {
               scrollX: true,
               click: true,
-              enabled: false
+              eventPassthrough: 'vertical'
             })
-            console.log(BS)
-
+            new BScroll('.goodSelect > .selectBottom > .picWrap', {
+              scrollX: true,
+              click: true,
+              eventPassthrough: 'vertical'
+            })
+          },
+          handleScroll () {
+            this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+            if (this.scrollTop >= document.documentElement.clientHeight){
+              this.isShowToup = true
+            } else{
+              this.isShowToup = false
+            }
+          },
+          // 点击到顶部
+          clickToTop() {
+            clearInterval(this.timer)
+            this.timer = setInterval(()=>{
+              document.documentElement.scrollTop -=100
+              if (document.documentElement.scrollTop === 0) {
+                clearInterval(this.timer)
+              }
+            },1)
           }
         },
         mounted (){
+          this.isShowCate=true
           this.scroll()
-
+          window.addEventListener('scroll', this.handleScroll)
           new Swiper('.swiper-container',{
             loop: true,
             pagination: {
@@ -301,7 +430,11 @@
 
             }
           })
-
+        },
+        components: {
+          GoodClassList,
+          ToTop,
+          FristPageBottom
         }
     }
 </script>
@@ -310,8 +443,8 @@
   @import "../../common/stylus/mixins.styl"
   $rem = 750/10rem
   .firstWrap
+    position relative
     font-size (28/$rem)
-
     margin-bottom (98/$rem)
     .firstHeader
       position fixed
@@ -326,13 +459,13 @@
         width 100%
         display flex
         align-items center
-        bottom-border-1px(#d9d9d9)
         padding (16/$rem 30/$rem)
         a
           width (138/$rem)
           height (40/$rem)
           margin-right (20/$rem)
           background url("./images/logo.png") no-repeat
+          background-size 100%
         .search
           display flex
           height (56/$rem)
@@ -347,6 +480,7 @@
             height (28/$rem)
             background url("./images/search.png") no-repeat
             margin-right (10/$rem)
+            background-size 100%
       .navWrap
         width 100%
         height (60/$rem)
@@ -416,6 +550,7 @@
               vertical-align middle
     .firstContent
       width 100%
+      overflow hidden
       .productShop
         background #ffffff
         margin-bottom (20/$rem)
@@ -425,18 +560,21 @@
           text-align center
           color #333333
           .textWrap
-            line-height (110/$rem)
+            height (48/$rem)
+            text-align center
+            line-height (48/$rem)
             .text
+              white-space nowrap
+              line-height (110/$rem)
               vertical-align middle
             .icon
               background url("./images/right_icon.png") no-repeat
+              background-size 100%
               display inline-block
               width (30/$rem)
-              height (30/$rem)
               vertical-align middle
+              height (30/$rem)
               margin-left (10/$rem)
-
-
         .shopContent
           width 100%
           font-size (28/$rem)
@@ -507,6 +645,7 @@
                 height (22/$rem)
                 background url("./images/rightArrow.png") no-repeat
                 vertical-align middle
+                background-size 100%
             &.new
               color #8ba0b6
               .seeAll
@@ -587,6 +726,166 @@
                 line-height (264/$rem)
                 font-size (28/$rem)
                 color #666
+
+
+      .timeBuy
+        height (320/$rem)
+        padding (30/$rem 40/$rem 30/$rem 56/$rem)
+        margin-bottom (20/$rem)
+        background #ffffff
+        .buyLeft
+          padding-top (80/$rem)
+          float left
+          color #333333
+          .title
+            font-size (36/$rem)
+            letter-spacing (10/$rem)
+            line-height (36/$rem)
+            margin-bottom (24/$rem)
+          .countdown
+            display flex
+            margin-top (24/$rem)
+            span
+              display inline-block
+              text-align center
+              width (62/$rem)
+              height (56/$rem)
+              background #444444
+              font-size (32/$rem)
+              border-radius (6/$rem)
+              line-height (56/$rem)
+              color #ffffff
+            p
+              font-size (30/$rem)
+              width (20/$rem)
+              height (45/$rem)
+              font-weight 700
+              line-height (48/$rem)
+              text-align center
+
+          .buyBottom
+            margin-top (40/$rem)
+            font-size (24/$rem)
+            height (24/$rem)
+            line-height (24/$rem)
+        .buyRight
+          float right
+          position relative
+          .price
+            position absolute
+            right (20/$rem)
+            bottom (36/$rem)
+            display flex
+            flex-direction column
+            justify-content center
+            width (96/$rem)
+            height (96/$rem)
+            border-radius 50%
+            background rgba(244,143,24,.95)
+            text-align center
+            color #ffffff
+            font-size (26/$rem)
+            span
+              height (28/$rem)
+              line-height (28/$rem)
+
+
+
+
+      .welfareTeam
+        margin-bottom (20/$rem)
+      .goodSelect
+        margin-bottom (20/$rem)
+        background #ffffff
+        .selectTop
+          height (110/$rem)
+          font-size (32/$rem)
+          text-align center
+          color #333333
+          .textWrap
+            height (48/$rem)
+            text-align center
+            line-height (48/$rem)
+            .text
+              white-space nowrap
+              line-height (110/$rem)
+              vertical-align middle
+            .icon
+              background url("./images/right_icon.png") no-repeat
+              background-size 100%
+              display inline-block
+              width (30/$rem)
+              vertical-align middle
+              height (30/$rem)
+              margin-left (10/$rem)
+
+
+
+        .selectBottom
+          padding (0 30/$rem 36/$rem 30/$rem)
+          overflow hidden
+          .picWrap
+            ul
+              height (417/$rem)
+              display flex
+              float left
+              li
+                display inline-block
+                width (575/$rem)
+                margin-right (20/$rem)
+                img
+                  display inline-block
+                  width (575/$rem)
+                  height (322/$rem)
+                  border-radius (8/$rem)
+                  margin-bottom (16/$rem)
+
+                .text
+                  clearFix()
+                  .textLeft
+                    float left
+                    width (410/$rem)
+                    overflow hidden
+                    white-space nowrap
+                    text-overflow ellipsis
+
+                    h4
+                      overflow hidden
+                      white-space nowrap
+                      text-overflow ellipsis
+                      font-size (28/$rem)
+                      color #333333
+                      margin-bottom (5/$rem)
+                    p
+                      overflow hidden
+                      white-space nowrap
+                      text-overflow ellipsis
+                      font-size (26/$rem)
+                      color #7F7F7F
+                  .textRight
+                    float right
+                    color #b4282d
+
+
+
+    .cateShop
+      position fixed
+      bottom (240/$rem)
+      right 0
+      transform translateX(0)
+      z-index 10
+      .cateImg
+        background url("./images/cate.png") no-repeat
+        display inline-block
+        width (112/$rem)
+        height (80/$rem)
+        background-size 100%
+      &.moveCate-enter-active, &.moveCate-leave-active
+        transition transform 1s
+      &.moveCate-enter, &.moveCate-leave-to
+        transform translateX(110%)
+
+
 
 
 </style>

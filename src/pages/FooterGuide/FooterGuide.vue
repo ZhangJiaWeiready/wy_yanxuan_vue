@@ -42,7 +42,7 @@
   #guideWrap
     position fixed
     bottom 0
-    z-index 100
+    z-index 10
     width 100%
     height (97/$rem)
 
@@ -66,6 +66,7 @@
           width (40/$rem)
           height (40/$rem)
           background url("./images/sprite.png")
+          background-size 100%
         &:nth-of-type(1)
           span
             background-position-y (-5*50/$rem)
