@@ -10,7 +10,7 @@
           <ul>
             <li v-for='(item,index) in cate.itemList' :key='index' v-show='index<7'>
               <div class="goodPic">
-                <img :src="item.primaryPicUrl">
+                <img v-lazy="item.primaryPicUrl">
               </div>
               <div class="slogan">
                 <span>{{item.simpleDesc}}</span>

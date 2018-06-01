@@ -5,7 +5,7 @@
     <div class="codeLoginContainer" v-if='isCodeLogin'>
       <form action="#">
         <div class='inputWrap' >
-          <input type="number" placeholder='请输入手机号' v-model='phoneNumber'>
+          <input type="tel" placeholder='请输入手机号' maxlength='11' v-model='phoneNumber'>
           <i class='closeIcon' v-show='isShow' @click='clearInput'></i>
         </div>
         <div class="scrollCode">
@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="codeLogin">
-          <input type="text" placeholder='请输入短信验证码' class='inputcode' v-model='message'>
+          <input type="text" placeholder='请输入短信验证码' maxlength='6' class='inputcode' v-model='message'>
           <div class="getCode">
             <span>获取验证码</span>
           </div>
@@ -28,8 +28,8 @@
           <span class='question'>遇到问题</span>
           <span class='clickLogin' @click='switchLogin'>使用验证码登陆</span>
         </div>
-        <div class="loginbtn">
-          <span>登录</span>
+        <div class="loginbtn" @click='toLogin'>
+            <span>登录</span>
         </div>
       </form>
     </div>
@@ -37,7 +37,7 @@
       <form action="">
         <div class="container">
           <div class="inputbox">
-            <input type="number" placeholder='请输入手机号' v-model='phoneNumber'>
+            <input type="tel" placeholder='请输入手机号' maxlength='11' v-model='phoneNumber'>
             <i class='closeIcon' v-show='isShow' @click='clearInput'></i>
           </div>
           <div class="inputbox">
@@ -48,6 +48,9 @@
             <span class='question'>忘记密码？</span>
             <span class='clickLogin' @click='switchLogin'>使用短信验证登录</span>
           </div>
+          <div class="loginbtn" @click='toLogin'>
+            <span>登录</span>
+          </div>
         </div>
       </form>
     </div>
@@ -57,53 +60,129 @@
         <i class='arrow'></i>
       </router-link>
     </login-footer>
+    <AlertTip :alertText='alertText' v-if='alertShow' @closeTip='closeTip'/>
   </div>
 </template>
 
 <script>
   import LoginHeader from '../../pages/LoginHeader/LoginHeader'
   import LoginLogo from '../../pages/LoginLogo/LoginLogo'
+  import {Toast} from 'mint-ui'
   import LoginFooter from '../../pages/LoginFooter/LoginFooter'
+  import AlertTip from '../../pages/AlertTip/AlertTip'
   export default {
     data(){
       return{
         phoneNumber: '',
         message: '',
         password: '',
-        isCodeLogin: true
-
-
+        isCodeLogin: true,
+        isShow: false,
+        alertText: '',
+        alertShow: false
       }
+    },
+    watch: {
+      phoneNumber(value){
+        const val = value.trim()
+        if (val){
+          this.isShow = true
+        } else {
+          this.isShow = false
+        }
+      }
+    },
+    mounted(){
+      this.clearInput()
+      this.clearpassword()
     },
     components:{
       LoginHeader,
       LoginLogo,
-      LoginFooter
+      LoginFooter,
+      AlertTip
     },
     methods: {
       clearInput (){
         this.phoneNumber= ''
-
       },
       clearpassword() {
         this.password= ''
       },
       switchLogin() {
         this.isCodeLogin= !this.isCodeLogin
-      }
+      },
+      toLogin() {
+        if (this.isCodeLogin){
+          const {phoneNumber,message} = this
+          if (phoneNumber==='') {
+            this.changeShow('手机号不为空')
+            // 直接return不执行下面的
+            return
+          }else if (message === ''){
+            this.changeShow('验证码不为空')
+            // 直接return不执行下面的
+            return
+          }else if (!/^1\d{10}$/.test(phoneNumber)){
+            this.changeShow('请输入正确的手机号码')
+            // 直接return不执行下面的
+            return
+          }else if (!/^\d{6}$/.test(message)){
+            this.changeShow('请输入六位数验证码')
+            // 直接return不执行下面的
+            return
+          } else{
+            Toast({
+              position: 'bottom',
+              message: '登陆成功',
+              duration: 2000
+            })
+            this.phoneNumber=''
+            this.message=''
+            this.$router.replace('/personal')
+          }
+        } else{
+          const {phoneNumber,password} = this
+          if (phoneNumber==='') {
+            this.changeShow('手机号不为空')
+            // 直接return不执行下面的
+            return
+          }else if (message === ''){
+            this.changeShow('验证码不为空')
+            // 直接return不执行下面的
+            return
+          }else if (password === ''){
+            this.changeShow('密码不为空')
+            // 直接return不执行下面的
+            return
+          }else if (!/^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/.use(password)){
+            this.changeShow('最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符')
+            // 直接return不执行下面的
+            return
+          } else {
+            Toast({
+              position: 'bottom',
+              message: '登陆成功',
+              duration: 2000
+            })
+            this.phoneNumber=''
+            this.password=''
+            this.$router.replace('/personal/:phoneNumber')
+          }
+        }
+      },
+      // 改变状态
+      changeShow (Text){
+        this.alertText= Text
+        this.alertShow= true
+      },
+      //当点击提示框确认时
+      closeTip() {
+        this.alertText=''
+        this.alertShow=false
+      },
     },
     computed: {
-      isShow(){
-        const phoneNumber = this.phoneNumber.trim()
-
-        if (phoneNumber){
-          console.log(phoneNumber)
-         return true
-        } else{
-
-        }
-
-      },
       isShowPwd (){
         const password = this.password.trim()
         if (password){
@@ -194,6 +273,7 @@
           display flex
           align-items center
           justify-content space-between
+          bottom-border-1px(#d9d9d9)
           .inputcode
             height (42/$rem)
             width (380/$rem)
@@ -226,6 +306,8 @@
 
         .loginbtn
           height (90/$rem)
+          width 100%
+          display inline-block
           background #b4282d
           color #fff
           text-align center
@@ -235,6 +317,18 @@
             line-height (90/$rem)
     .messageLoginContainer
       padding (0 40/$rem)
+      .loginbtn
+        height (90/$rem)
+        width 100%
+        display inline-block
+        background #b4282d
+        color #fff
+        text-align center
+        border-radius (8/$rem)
+        margin-top (20/$rem)
+        margin-bottom (20/$rem)
+        span
+          line-height (90/$rem)
       form
         .container
           margin-top (80/$rem)

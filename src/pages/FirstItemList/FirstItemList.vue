@@ -20,7 +20,7 @@
     <div class='goodsList' :class='newItem' v-if='newItem'>
       <ul >
         <li v-for='(newItem,index) in newItemList' :key='index' >
-          <img :src="newItem.listPicUrl" alt="">
+          <img v-lazy="newItem.listPicUrl" alt="">
           <div class='shopNews'>
             <div class='newIcon' v-if='newItem.itemTagList' v-for='(tag,index) in newItem.itemTagList' :key='index'>
               <p :style='{background:color[tag.type]}'>{{tag.name}}</p>

@@ -9,7 +9,7 @@
         <i class='phoneIcon'></i>
         <p>手机号码登录</p>
       </router-link>
-      <router-link to='/emaillogin' class="item emailLogin">
+      <router-link to='/phonelogin' class="item emailLogin">
         <i class='emailIcon'></i>
         <p>邮箱账号登录</p>
       </router-link>

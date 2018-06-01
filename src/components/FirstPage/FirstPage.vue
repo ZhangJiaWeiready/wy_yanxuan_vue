@@ -1,6 +1,6 @@
 <template>
     <div class='firstWrap'>
-
+      <FirstAlertTip/>
       <header class='firstHeader'>
         <div class="logo">
           <a href="javascript:;"></a>
@@ -32,7 +32,7 @@
       </header>
       <router-view></router-view>
       <transition name='moveCate'>
-        <div class="cateShop" v-if='isShowCate'>
+        <div class="cateShop" v-if="isShowCate&&($route.query.cateId==='1022001')">
           <i class='cateImg'></i>
         </div>
       </transition>
@@ -46,12 +46,14 @@
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.min.css'
   import ToTop from '../../pages/ToTop/ToTop'
+  import FirstAlertTip from '../../pages/FirstAlertTip/FirstAlertTip'
     export default {
         data (){
           return {
             isShowCate: false,
             isShowToup: false,
-            num:0
+            num:0,
+
           }
         },
         methods: {
@@ -106,7 +108,7 @@
         },
 
         components: {
-          ToTop
+          ToTop,FirstAlertTip
         },
         computed: {
           ...mapState([
@@ -191,6 +193,24 @@
 
 
 
+
+
+    .cateShop
+      position fixed
+      bottom (240/$rem)
+      right 0
+      transform translateX(0)
+      z-index 10
+      .cateImg
+        background url("./images/cate.png") no-repeat
+        display inline-block
+        width (112/$rem)
+        height (80/$rem)
+        background-size 100%
+      &.moveCate-enter-active, &.moveCate-leave-active
+        transition transform 1s
+      &.moveCate-enter, &.moveCate-leave-to
+        transform translateX(110%)
 
 
 </style>

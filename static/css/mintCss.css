@@ -1,0 +1,28 @@
+.mint-msgbox{
+  height: 25%!important;
+  font-size: 40px!important;
+}
+.mint-msgbox-title{
+  font-size: 50px!important;
+}
+.mint-msgbox-message{
+  line-height: 0!important;
+}
+.mint-msgbox-header{
+  height: 50%!important;
+}
+.mint-msgbox-btns{
+  height: 85px!important;
+}
+.mint-msgbox-btn ,.mint-msgbox-cancel ,.mint-msgbox-btn, .mint-msgbox-confirm {
+  font-size: 40px!important;
+}
+.mint-toast, .is-placemiddle{
+  width: 80%;
+  font-size: 80px!important;
+  height:85px!important;
+}
+.mint-toast-text{
+  font-size: 40px!important;
+  line-height: 70px!important; ;
+}

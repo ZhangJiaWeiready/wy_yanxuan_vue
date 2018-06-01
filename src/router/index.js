@@ -1,18 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import FirstPage from '../components/FirstPage/FirstPage'
-import General from '../components/General/General'
-import Classify from '../components/Classify/Classify'
-import ShopCart from '../components/ShopCart/ShopCart'
-import Personal from '../components/Personal/Personal'
-import Search from '../components/Search/Search'
-import Login  from '../components/Login/Login'
-import PhoneLogin from '../components/PhoneLogin/PhoneLogin'
-import EmailLogin from '../components/EmailLogin/EmailLogin'
-import Register from '../components/Register/Register'
-import EmailRegister from '../components/EmailRegister/EmailRegister'
-import GoodList from '../components/FirstPage/GoodList/GoodList'
+const FirstPage = () => import('../components/FirstPage/FirstPage')
+const General = () => import('../components/General/General')
+const Classify = () => import('../components/Classify/Classify')
+const ShopCart = () => import('../components/ShopCart/ShopCart')
+const Personal = () => import('../components/Personal/Personal')
+const Search = () => import('../components/Search/Search')
+const Login = () => import('../components/Login/Login')
+const PhoneLogin = () => import('../components/PhoneLogin/PhoneLogin')
+const EmailLogin = () => import('../components/EmailLogin/EmailLogin')
+const Register = () => import('../components/Register/Register')
+const EmailRegister = () => import('../components/EmailRegister/EmailRegister')
+const GoodList = () => import('../components/FirstPage/GoodList/GoodList')
+const DefaultPage = () => import('../components/DefaultPage/DefaultPage')
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -31,14 +32,22 @@ export default new VueRouter({
             showFooter: true
           },
         }
+      ],
 
-      ]
     },
+
     {
       path: '/general',
       component: General,
       meta: {
         showFooter: true
+      }
+    },
+    {
+      path: '/default',
+      component: DefaultPage,
+      meta: {
+        showFooter: false
       }
     },
     {
@@ -107,7 +116,7 @@ export default new VueRouter({
     },
     {
       path: '/',
-      redirect: '/firstpage/item?cateId=1022001',
+      redirect: '/default',
     },
 
   ],

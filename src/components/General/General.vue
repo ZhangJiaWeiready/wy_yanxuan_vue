@@ -530,12 +530,13 @@
                 width 100%
                 height 100%
             .right
+              height (360/$rem)
               float right
               display flex
               flex-direction column
               img
                 width (178/$rem)
-                height 178%
+                height (178/$rem)
                 &:first-of-type
                   margin-bottom (4/$rem)
 

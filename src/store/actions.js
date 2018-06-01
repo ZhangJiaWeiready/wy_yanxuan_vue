@@ -56,13 +56,14 @@ export default {
       commit(RECEIVECATELIST,{cateList})
     }
   },
-  async getFlashSaleIndexVO({commit}){
+  async getFlashSaleIndexVO({commit},callBack){
     // 发送ajax请求
     const result = await reqFlashSaleIndexVO()
     if (result.code ===0){
       const flashSaleIndexVO = result.data
       commit(RECEIVEFLASHSALEINDEXVO,{flashSaleIndexVO})
     }
+    callBack&&callBack()
   },
   async getFocusList({commit},callback){
     // 发送ajax请求

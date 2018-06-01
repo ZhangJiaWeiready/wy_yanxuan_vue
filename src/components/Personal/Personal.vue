@@ -9,8 +9,8 @@
               <div class='memberTitle'><span>普通用户</span></div>
             </div>
           </div>
-          <transition name='move'>
-            <div class="right">
+          <transition name='move' >
+            <div class="right" @click='move'>
               <div class="bg">
                 <div class="left">
                   <i class='icon'></i>
@@ -56,24 +56,38 @@
         },
       methods: {
         logOut (){
-          MessageBox.confirm('确认退出吗?').then(
+          MessageBox.confirm('确认退出吗？').then(
             // 确定
             action => {
               // 请求退出
-              this.$store.dispatch('logOut')
+              // this.$store.dispatch('logOut')
               Toast({
-                message: '确认退出吗？',
+                position: 'bottom',
+                message: '已退出',
+                duration: 2000
+
               })
+              this.$router.replace('/login')
             },
             // 取消
             action => {
               console.log('点击了取消')
             }
           );
+        },
+        move(){
+          setTimeout(()=>{
+            const right = document.querySelector('.header .right')
+            right.style.transform= 'translateX(100%)'
+          },1000)
         }
       },
-      mounted () {
 
+      mounted () {
+          /*setTimeout(()=>{
+            const right = document.querySelector('.header .right')
+            right.style.transform= 'translateX(0)'
+          },1000)*/
       },
         components: {
 
@@ -133,11 +147,11 @@
           margin-left (17/$rem)
           width (193/$rem)
           height 100%
-          transform translateX(100%)
-          &.move-enter-active, &.move-leave-active
-            transition all 10s
-          &.move-enter, &.move-leave-to
-            transform translateX(0)
+
+          &.move-leave-active
+            transition transform 10s
+          &.move-leave-to
+            transform translateX(100%)
           .bg
             width (203/$rem)
             height (84/$rem)

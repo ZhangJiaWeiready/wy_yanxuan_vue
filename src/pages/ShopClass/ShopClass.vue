@@ -2,7 +2,7 @@
     <div class='wrap'>
       <div class="ListContent" v-if='headCateList[position]'>
         <div class="banner" >
-          <img :src="headCateList[position].bannerUrl" v-if='headCateList[position].bannerUrl'>
+          <img v-lazy="headCateList[position].bannerUrl" v-if='headCateList[position].bannerUrl'>
 
         </div>
         <div class="cataList">
@@ -11,7 +11,7 @@
           </div>
           <ul>
             <li v-for='(cate,index) in headCateList[position].subCateList' :key='index'>
-              <img :src="cate.bannerUrl||cate.wapBannerUrl" alt="">
+              <img v-lazy="cate.bannerUrl||cate.wapBannerUrl" alt="">
               <span>
                 {{cate.name}}
               </span>
