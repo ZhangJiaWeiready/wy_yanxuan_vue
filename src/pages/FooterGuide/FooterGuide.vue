@@ -2,8 +2,8 @@
     <!--通过设置meta来确定那个组件有那个组件隐藏-->
     <div id='guideWrap' v-show='$route.meta.showFooter'>
       <ul class='guideList'>
-        <li @click="toPages('/firstpage')">
-            <span :class="{active:$route.path==='/firstpage'}" ></span>
+        <li @click="toPages('/firstpage/item?cateId=1022001')">
+            <span :class="{active:$route.path==='/firstpage/item'}" ></span>
             <p>首页</p>
         </li>
         <li @click="toPages('/general')">

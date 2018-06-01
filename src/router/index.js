@@ -12,6 +12,7 @@ import PhoneLogin from '../components/PhoneLogin/PhoneLogin'
 import EmailLogin from '../components/EmailLogin/EmailLogin'
 import Register from '../components/Register/Register'
 import EmailRegister from '../components/EmailRegister/EmailRegister'
+import GoodList from '../components/FirstPage/GoodList/GoodList'
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -21,7 +22,17 @@ export default new VueRouter({
       component: FirstPage,
       meta: {
         showFooter: true
-      }
+      },
+      children:[
+        {
+          path: '/firstpage/item',
+          component: GoodList,
+          meta: {
+            showFooter: true
+          },
+        }
+
+      ]
     },
     {
       path: '/general',
@@ -96,7 +107,7 @@ export default new VueRouter({
     },
     {
       path: '/',
-      redirect: '/firstpage',
+      redirect: '/firstpage/item?cateId=1022001',
     },
 
   ],

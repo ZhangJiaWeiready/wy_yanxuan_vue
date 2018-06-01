@@ -40,4 +40,6 @@ export const reqZhenThree = () => ajax('/zhenThree')
 export const reqYxLook = () => ajax('/yxLook')
 // 找更多
 export const reqFindMore = () => ajax('/findMore')
+// all cate
+export const reqCate = () => ajax('/cate')
 

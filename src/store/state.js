@@ -25,6 +25,8 @@ export default {
   findMore: [], // 找更多
   categoryL1List: [], // 个性专区
   categoryL2List: [],
-  currentCategory: {}
+  currentCategory: {},
+
+  cates: []
 
 }

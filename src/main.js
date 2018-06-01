@@ -8,7 +8,9 @@ import {Button} from 'mint-ui'
 import './mock/mockServer.js'  // 直接引入mock
 
 Vue.component(Button.name,Button) // <mt-button>
-
+router.afterEach((to,from,next) => {
+  window.scrollTo(0,0);
+})
 
 /* eslint-disable no-new */
 new Vue({

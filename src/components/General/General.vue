@@ -6,6 +6,17 @@
             <div class="swiper-wrapper" v-for='(item,index) in banner' :key='index'>
               <div class="swiper-slide">
                   <img :src="item.picUrl" alt="">
+                  <div class='middleText'>
+                      <div class='subtitle'>
+                        --{{item.subTitle}}
+                      </div>
+                      <div class='title'>
+                        {{item.title}}
+                      </div>
+                      <div class='desc'>
+                        {{item.desc}}
+                    </div>
+                  </div>
               </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -258,6 +269,37 @@
         display flex
         .swiper-slide
           width 80%
+          text-align center
+          .middleText
+            position absolute
+            top 0
+            left 0
+            right 0
+            bottom 0
+            margin auto
+            box-sizing border-box
+            width (466/$rem)
+            height (198/$rem)
+            background rgba(255,255,255,.9)
+            display flex
+            flex-direction column
+            justify-content center
+            align-items center
+
+            .subtitle
+              font-size (22/$rem)
+              color #7f7f7f
+              line-height (30/$rem)
+            .title
+              font-size (34/$rem)
+              color #333
+              font-weight 700
+              margin-top (16/$rem)
+              line-height (48/$rem)
+            .desc
+              font-size (24/$rem)
+              color #333
+              margin-top (4/$rem)
           img
             width 100%
             height 100%

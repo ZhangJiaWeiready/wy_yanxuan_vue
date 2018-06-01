@@ -24,4 +24,6 @@ export const RECEIVEZHENTHREE = 'receivezhenThree'
 export const RECEIVEYXLOOK = 'receiveyxLook'
 export const RECEIVEFINDMORE = 'receivefindMore'
 
+export const RECAIVECATE = 'recaivecate'
+
 

@@ -20,7 +20,8 @@ import {
   RECEIVEYXLOOK,
   RECEIVEZHENONE,
   RECEIVEZHENTWO,
-  RECEIVEZHENTHREE
+  RECEIVEZHENTHREE,
+  RECAIVECATE
 
 } from './mutation-type'
 
@@ -93,4 +94,7 @@ export default {// 同名函数简写的方式
   [RECEIVEYXLOOK] (state,{yxLook}){
     state.yxLook= yxLook
   },
+  [RECAIVECATE] (state,{cates}){
+    state.cates = cates
+  }
 }

@@ -21,6 +21,7 @@ import {
   RECEIVEZHENTHREE,
   RECEIVEYXLOOK,
   RECEIVEFINDMORE,
+  RECAIVECATE
 } from './mutation-type'
 import {
   reqCatelist,
@@ -44,6 +45,7 @@ import {
   reqZhenThree,
   reqYxLook,
   reqFindMore,
+  reqCate
 } from '../api'
 export default {
   async getCateList({commit}){
@@ -224,4 +226,13 @@ export default {
       commit(RECEIVEFINDMORE ,{findMore})
     }
   },
+  async getCates ({commit}) {
+    //发送ajax
+    const result = await reqCate()
+    if(result.code===0){
+      const cates = result.data
+      commit(RECAIVECATE ,{cates})
+    }
+  },
+
 }
