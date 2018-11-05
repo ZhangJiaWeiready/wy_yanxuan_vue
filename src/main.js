@@ -10,6 +10,9 @@ import './mock/mockServer.js'  // 直接引入mock
 import loading from './common/images/loading.gif'
 // import VueCountdown from '@xkeshi/vue-countdown'
 import vvv
+
+
+by dev 210212
 Vue.component(Button.name,Button) // <mt-button>
 // 每次切换路由都到顶部
 router.afterEach((to,from,next) => {
