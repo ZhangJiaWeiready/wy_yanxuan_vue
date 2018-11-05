@@ -1,4 +1,4 @@
-// The Vue build version to load with the `import` command
+﻿// The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
@@ -8,8 +8,8 @@ import {Button} from 'mint-ui'
 import VueLazyload from 'vue-lazyload' // 图片懒加载
 import './mock/mockServer.js'  // 直接引入mock
 import loading from './common/images/loading.gif'
-import VueCountdown from '@xkeshi/vue-countdown'
-
+// import VueCountdown from '@xkeshi/vue-countdown'
+import vvv
 Vue.component(Button.name,Button) // <mt-button>
 // 每次切换路由都到顶部
 router.afterEach((to,from,next) => {
